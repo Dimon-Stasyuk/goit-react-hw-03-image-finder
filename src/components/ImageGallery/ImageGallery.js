@@ -33,7 +33,7 @@ export default class ImageGallery extends React.Component {
         );
 
       this.pageIncrement();
-      this.scrollPage();
+
       this.setState({ loading: false });
     }, 500);
   };
@@ -63,6 +63,11 @@ export default class ImageGallery extends React.Component {
     }, 1000);
   };
 
+  onBtnClick = () => {
+    this.onFetch();
+    this.scrollPage();
+  };
+
   pageIncrement = () => {
     this.setState((prevState) => ({
       page: prevState.page + 1,
@@ -88,7 +93,7 @@ export default class ImageGallery extends React.Component {
             />
           )}
         </ul>
-        {this.state.btn && <Button OnBtn={this.onFetch} />}
+        {this.state.btn && <Button OnBtn={this.onBtnClick} />}
         {this.state.loading && <Spinner />}
         {this.state.modal && (
           <Modal
